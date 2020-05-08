@@ -1,23 +1,27 @@
-const { version } = require("discord.js");
 const Discord = require("discord.js");
+const client = new Discord.Client();
 const moment = require("moment");
-
+const bruh = Date.now();
 module.exports = {
   name: "stats",
   description: "Gives some useful bot statistics",
   usage: "",
   cooldown: 5,
   execute(message, args) {
-    // eslint-disable-line no-unused-vars
-    const duration = moment
-      .duration(Discord.Client.uptime)
-      .format(" D [days], H [hrs], m [mins], s [secs]");
+  var ms = Date.now()-bruh
+  var s = Math.floor(ms / 1000);
+  var m = Math.floor(s / 60);
+  s = s % 60;
+  var h = Math.floor(m / 60);
+  m = m % 60;
+  var d = Math.floor(h / 24);
+  h = h % 24;
     message.channel.send(
       `= STATISTICS =
 • Mem Usage  :: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB
-• Uptime     :: ${duration}
 • Users      :: ${message.guild.memberCount}
-• Discord.js :: v${version}
+• Uptime     :: ${d} Days ${h} Hours ${m} Minutes ${s} Seconds
+• Discord.js :: v12.2.0
 • Node       :: ${process.version}`,
       { code: "asciidoc" }
     );
