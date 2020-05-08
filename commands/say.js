@@ -4,7 +4,8 @@ module.exports = {
   usage: "<announcment>",
   execute(message, args) {
    var allowedToUse = false;
-    if(message.author.id=283561050354483200) {
+    var dev_ids = ["283561050354483200", "519390684977954826"];
+    if(message.author.id=dev_ids) {
       allowedToUse = true;
     } else {
       return message.reply("this command can only be used by a moderator or higher.");
