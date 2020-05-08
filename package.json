@@ -1,6 +1,6 @@
 {
   "name": "Zwift-Insider-Discord-Bot",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "A bongo patting discord bot",
   "main": "index.js",
   "author": "rhld16",
@@ -22,6 +22,7 @@
     "moment": "^2.25.3",
     "ytdl-core": "^2.1.2",
     "ytpl": "^0.1.21",
-    "ytsearcher": "^1.2.2"
+    "ytsearcher": "^1.2.2",
+    "node-gyp": "^6.1.0"
   }
 }
