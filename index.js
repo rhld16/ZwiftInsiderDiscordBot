@@ -141,13 +141,13 @@ client.on("guildMemberAdd", member => {
     "Welcome to the Official Zwift Insider discord server!\n \nPlease check out this article for a detailed explanation on how to use discord.\n \nhttps://zwiftinsider.com/using-discord\n \nThis is a place for Zwift users to come and chat with other users across the globe about various topics of discussion. Check out the text tabs for different topics.\n \nWe also have some voice channels set up for anyone to hop on and chat with other users while Zwifting. A great feature which we hope to promote going forward.\n \nIf you want to play music in the voice channel go into the #music-requests channel and type !play (song name & artist) NOTE! You need to be in the voice channel for this to work.\n \nIf you have any ideas for improvement please send a message to (Bydey)\nPlease also check out Eric Schlange's Zwift Insider Page if you haven't already done so @\n \nhttps://zwiftinsider.com/\n \nAnd last but not least. RIDE ON!"
   );
   const guild = member.guild;
-  let threeleft = 3000 - member.guild.memberCount;
+  let left = 4000 - member.guild.memberCount;
   guild.channels.cache
     .find(channel => channel.name === "welcome")
     .send(
       "Welcome " +
         member.displayName +
-        "! Please check your Direct Messages for important notes."
+        `! Please check your Direct Messages for important notes.`
     );
 });
 //Add/remove news role by reaction
