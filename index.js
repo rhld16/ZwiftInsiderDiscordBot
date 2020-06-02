@@ -3,16 +3,13 @@ const fs = require("fs");
 const Discord = require("discord.js");
 const DiscordRSS = require("discord.rss");
 const prefix = "!";
-const SQLite = require("better-sqlite3");
-const sql = new SQLite('./scores.sqlite');
 const client = new Discord.Client({
   partials: ["MESSAGE", "CHANNEL", "REACTION"]
 });
-const cooldowns = new Discord.Collection();
 client.commands = new Discord.Collection();
 client.music = require("discordjs-music-plugin");
 const override = {
-  suppressLogLevels: ["info"],
+  suppressLogLevels: ["silent"],
   bot: { prefix: "!" },
   database: { uri: "./rss" },
   feeds: { refreshTimeMinutes: 30 }
@@ -29,31 +26,9 @@ client.once("ready", () => {
     activity: { type: "PLAYING", name: "Zwift | use !help" }
   });
   console.log("Ready!");
-  const table = sql.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'scores';").get();
-  if (!table['count(*)']) {
-    sql.prepare("CREATE TABLE scores (id TEXT PRIMARY KEY, user TEXT, guild TEXT, points INTEGER, level INTEGER);").run();
-    sql.prepare("CREATE UNIQUE INDEX idx_scores_id ON scores (id);").run();
-    sql.pragma("synchronous = 1");
-    sql.pragma("journal_mode = wal")};
-  client.getScore = sql.prepare("SELECT * FROM scores WHERE user = ? AND guild = ?");
-  client.setScore = sql.prepare("INSERT OR REPLACE INTO scores (id, user, guild, points, level) VALUES (@id, @user, @guild, @points, @level);");
 });
 client.on("message", message => {
   if (message.author.bot) return;
-    let score;
-  if (message.guild) {
-    score = client.getScore.get(message.author.id, message.guild.id);
-    if (!score) {
-      score = { id: `${message.guild.id}-${message.author.id}`, user: message.author.id, guild: message.guild.id, points: 0, level: 1 }
-    }
-    score.points++;
-    const curLevel = Math.floor(0.1 * Math.sqrt(score.points));
-    if(score.level < curLevel) {
-      score.level++;
-      message.reply(`You've leveled up to level **${curLevel}**! Ain't that dandy?`);
-    }
-    client.setScore.run(score);
-  }
   if (!message.content.startsWith(prefix)) return;
   const args = message.content.slice(prefix.length).split(/ +/);
   const commandName = args.shift().toLowerCase();
@@ -72,25 +47,6 @@ client.on("message", message => {
 
     return message.channel.send(reply);
   }
-  if (!cooldowns.has(command.name)) {
-    cooldowns.set(command.name, new Discord.Collection());
-  }
-  const now = Date.now();
-  const timestamps = cooldowns.get(command.name);
-  const cooldownAmount = (command.cooldown || 3) * 1000;
-  if (timestamps.has(message.author.id)) {
-    const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
-    if (now < expirationTime) {
-      const timeLeft = (expirationTime - now) / 1000;
-      return message.reply(
-        `please wait ${timeLeft.toFixed(
-          1
-        )} more second(s) before reusing the \`${command.name}\` command.`
-      )}};
-
-  timestamps.set(message.author.id, now);
-  setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-
   try {
     command.execute(message, args);
   } catch (error) {
