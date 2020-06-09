@@ -1,12 +1,10 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const moment = require("moment");
 const bruh = Date.now();
 module.exports = {
   name: "stats",
   description: "Gives some useful bot statistics",
   usage: "",
-  cooldown: 5,
   execute(message, args) {
   var ms = Date.now()-bruh
   var s = Math.floor(ms / 1000);
