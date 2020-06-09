@@ -14,15 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "@discordjs/opus": "^0.3.2",
-    "better-sqlite3": "^7.0.1",
     "discord.js": "^12.2.0",
-    "discord.rss": "^5.0.6",
-    "discordjs-music-plugin": "^14.1.0",
-    "express": "^4.17.1",
-    "moment": "^2.25.3",
-    "ytdl-core": "^2.1.2",
-    "ytpl": "^0.1.21",
-    "ytsearcher": "^1.2.2",
-    "node-gyp": "^6.1.0"
+    "express": "^4.17.1"
   }
 }
