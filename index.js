@@ -3,6 +3,7 @@ const client = new Discord.Client({partials: ["MESSAGE", "CHANNEL", "REACTION"]}
 const reactions = require("./reactions.js");
 const stats = require("./stats.js");
 const handler = require("./handler.js");
+const music = require("./music.js");
 
 client.once("ready", () => {
   client.user.setPresence({ activity: { type: "PLAYING", name: "Zwift | use !help" }});
