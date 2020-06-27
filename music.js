@@ -6,7 +6,6 @@ module.exports =  function() {
   leave(musich);
   console.log("bot ready");
   play(musich);
-}),
   client.on("message", e => {
     if (e.content.startsWith(".")) {
       let n = e.content.substring(1).split(" ")[0],
