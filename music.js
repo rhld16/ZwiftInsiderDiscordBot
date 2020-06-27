@@ -1,10 +1,9 @@
 const Discord = require("discord.js"),
   ytdl = require("ytdl-core"),
-  client = new Discord.Client(),
-  chanid = '718449584371662880'
-module.exports =  function() {
-  const musich = client.channels.cache.get(chanid);
-  leave(musich);
+  client = new Discord.Client();
+exports.player =  function() {
+  const musich = client.channels.cache.get('718449584371662880');
+  musich.leave();
   console.log("bot ready");
   play(musich);
   client.on("message", e => {
@@ -27,11 +26,6 @@ const commands = {
       play();
     }
   },
-  leave: {
-    process: function(e) {
-      leave();
-    }
-  },
   reboot: {
     process: function(e) {
       leave(),
@@ -52,11 +46,6 @@ function play() {
           leave(), play(), console.log("repeat");
         });
   });
-}
-function leave() {
-  var musich = client.channels.cache.get(chanid);
-  console.log("leaving");
-  musich.leave();
 }
   setInterval(function() {
     process.exit(0);
