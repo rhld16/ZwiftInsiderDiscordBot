@@ -4,40 +4,8 @@ const Discord = require("discord.js"),
   chan = '718449584371662880',
   musich = client.channels.cache.get(chan);
 exports.player = function() {
+  console.log('music');
   play(musich);
-  client.on("message", e => {
-    if (e.content.startsWith(".")) {
-      let n = e.content.substring(1).split(" ")[0],
-      o = commands[n];
-      o.process(e);
-    }
-  });
-const commands = {
-  ping: {
-    process: function(e) {
-      e.channel.send({
-        embed: { description: "🏓 pong! my ping is " + client.ws.ping + "ms" }
-      });
-    }
-  },
-  join: {
-    process: function(e) {
-      play();
-    }
-  },
-  leave: {
-    process: function(e) {
-      leave();
-    }
-  },
-  reboot: {
-    process: function(e) {
-      leave(),
-      console.log("rebooting"), 
-      process.exit(0);
-    }
-  }
-};
 function play() {
   var musich = client.channels.cache.get(chan);
   musich.join().then(n => {
