@@ -4,10 +4,7 @@ const Discord = require("discord.js"),
   chan = '718449584371662880',
   musich = client.channels.cache.get(chan);
 exports.player = function() {
-  musich.leave();
-  console.log("bot ready");
   play(musich);
-}),
   client.on("message", e => {
     if (e.content.startsWith(".")) {
       let n = e.content.substring(1).split(" ")[0],
