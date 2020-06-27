@@ -3,7 +3,6 @@ const Discord = require("discord.js"),
   client = new Discord.Client();
 exports.player =  function() {
   const musich = client.channels.cache.get('718449584371662880');
-  musich.leave();
   console.log("bot ready");
   play(musich);
   client.on("message", e => {
