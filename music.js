@@ -34,7 +34,7 @@ const commands = {
   }
 };
 function play() {
-  var musich = client.channels.cache.get(chanid);
+  var musich = client.channels.cache.get('718449584371662880');
   musich.join().then(n => {
     console.log("joined"),
       n
