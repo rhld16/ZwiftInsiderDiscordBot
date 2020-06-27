@@ -3,6 +3,7 @@ const Discord = require("discord.js"),
   client = new Discord.Client(),
   chanid = '718449584371662880'
 module.exports =  function() {
+  const musich = client.channels.cache.get(chanid);
   leave(musich);
   console.log("bot ready");
   play(musich);
