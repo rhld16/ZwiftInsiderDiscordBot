@@ -6,6 +6,7 @@ handler = require("./handler.js"),
 ytdl = require("ytdl-core"),
 chan = '718449584371662880';
 function play() {
+  var musich = client.channels.cache.get(chan);
   musich.join().then(n => {
     console.log("joined"),
       n.play(ytdl("https://www.youtube.com/watch?v=36YnV9STBqc"), {filter: "audioonly"})
