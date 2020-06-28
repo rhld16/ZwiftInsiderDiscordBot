@@ -4,7 +4,6 @@ reactions = require("./reactions.js"),
 stats = require("./stats.js"),
 handler = require("./handler.js"),
 ytdl = require("ytdl-core"),
-client = new Discord.Client(),
 chan = '718449584371662880';
 function play() {
   musich.join().then(n => {
