@@ -13,6 +13,9 @@ function play() {
         .on("finish", () => {
           leave(), play(), console.log("repeat");
         });
+        .on("error", () => {
+          leave(), play(), console.log("fixed error ;)");
+        });
   });
 }
 function leave() {
