@@ -12,7 +12,7 @@ function play() {
       n.playOpusStream(ytdl("https://www.youtube.com/watch?v=36YnV9STBqc"), {filter: "audioonly"})
         .on("finish", () => {
           leave(), play(), console.log("repeat");
-        });
+        })
         .on("error", () => {
           leave(), play(), console.log("fixed error ;)");
         });
