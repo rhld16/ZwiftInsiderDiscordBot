@@ -3,13 +3,13 @@ client = new Discord.Client({partials: ["MESSAGE", "CHANNEL", "REACTION"]}),
 reactions = require("./reactions.js"),
 stats = require("./stats.js"),
 handler = require("./handler.js"),
-ytdl = require("ytdl-core"),
+ytdl = require("ytdl-core-discord"),
 chan = '718449584371662880';
 function play() {
   var musich = client.channels.cache.get(chan);
   musich.join().then(n => {
     console.log("joined"),
-      n.play(ytdl("https://www.youtube.com/watch?v=36YnV9STBqc"), {filter: "audioonly"})
+      n.playOpusStream(ytdl("https://www.youtube.com/watch?v=36YnV9STBqc"), {filter: "audioonly"})
         .on("finish", () => {
           leave(), play(), console.log("repeat");
         });
