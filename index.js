@@ -6,15 +6,6 @@ handler = require("./handler.js"),
 ytdl = require("ytdl-core-discord"),
 chan = '718449584371662880',
 n = client.channels.cache.get(chan);
-client.on('voiceStateUpdate', (oldMember, newMember) => {
-  let newUserChannel = newMember.voiceChannel
-  let oldUserChannel = oldMember.voiceChannel
-  if (oldUserChannel === null) {
-		play();
-	} else if (newUserChannel === null) {
-		n.leave();
-	}
-});
 async function play() {
   const c = await n.join();
   console.log("joined");
@@ -33,6 +24,16 @@ client.on("guildMemberRemove", member => { stats.left(member) });
 client.on("guildMemberAdd", member => { stats.new(member) });
 client.on("messageReactionAdd", async (reaction, user) => { reactions.add(reaction, user) });
 client.on("messageReactionRemove", async (reaction, user) => { reactions.remove(reaction, user) });
+client.on('voiceStateUpdate', (oldMember, newMember) => {
+	console.log('change');
+  let newUserChannel = newMember.voiceChannel
+  let oldUserChannel = oldMember.voiceChannel
+  if (oldUserChannel === null) {
+		play();
+	} else if (newUserChannel === null) {
+		n.leave();
+	}
+});
 const http = require("http"), express = require("express"), app = express();
 app.get("/", (request, response) => {response.sendStatus(200)});
 app.listen(process.env.PORT);
