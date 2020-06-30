@@ -3,7 +3,7 @@ client = new Discord.Client({partials: ["MESSAGE", "CHANNEL", "REACTION"]}),
 reactions = require("./reactions.js"),
 stats = require("./stats.js"),
 handler = require("./handler.js"),
-ytdl = require("ytdl-core"),
+ytdl = require("ytdl-core-discord"),
 chan = '718449584371662880';
 async function play() {
   var n = client.channels.cache.get(chan);
