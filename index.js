@@ -26,8 +26,8 @@ client.on("messageReactionAdd", async (reaction, user) => { reactions.add(reacti
 client.on("messageReactionRemove", async (reaction, user) => { reactions.remove(reaction, user) });
 client.on('voiceStateUpdate', (oldMember, newMember) => {
 	console.log('change');
-  let newUserChannel = newMember.voiceChannel
-  let oldUserChannel = oldMember.voiceChannel
+  let newUserChannel = newMember.channel
+  let oldUserChannel = oldMember.channel
   if (oldUserChannel === null) {
 		play();
 	} else if (newUserChannel === null) {
