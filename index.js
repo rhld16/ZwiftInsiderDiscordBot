@@ -4,10 +4,9 @@ reactions = require("./reactions.js"),
 stats = require("./stats.js"),
 handler = require("./handler.js"),
 ytdl = require("ytdl-core-discord"),
-chan = '718449584371662880',
-n = client.channels.cache.get(chan);
+chan = '718449584371662880';
 async function play() {
-  const c = await n.join();
+   const c = await client.channels.cache.get(chan).join();
   console.log("joined");
   const d = c.play(await ytdl("https://www.youtube.com/watch?v=36YnV9STBqc"), { type: 'opus' });
   d.on('finish', () => {
@@ -31,7 +30,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
   if (oldUserChannel === null) {
 		play();
 	} else if (newUserChannel === null) {
-		n.leave();
+		client.channels.cache.get(chan).leave();
 	}
 });
 const http = require("http"), express = require("express"), app = express();
