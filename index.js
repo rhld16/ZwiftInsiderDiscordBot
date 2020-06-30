@@ -5,22 +5,17 @@ stats = require("./stats.js"),
 handler = require("./handler.js"),
 ytdl = require("ytdl-core"),
 chan = '718449584371662880';
-function play() {
-  var musich = client.channels.cache.get(chan);
-  musich.join().then(n => {
-    console.log("joined"),
-      n.play(ytdl("https://www.youtube.com/watch?v=36YnV9STBqc"), {filter: "audioonly"})
-        .on("finish", () => {
-          leave(), play(), console.log("repeat");
-        });
+async function play() {
+  var n = client.channels.cache.get(chan);
+  const c = await n.join();
+  console.log("joined");
+  const d = c.play(await ytdl("https://www.youtube.com/watch?v=36YnV9STBqc"), { type: 'opus' });
+  d.on('finish', () => {
+	console.log('finish!'),
+    c.disconnect();
+    play();
   });
 }
-function leave() {
-  var musich = client.channels.cache.get(chan);
-  console.log("leaving");
-  musich.leave();
-}
-
 client.once("ready", () => {
   client.user.setPresence({ activity: { type: "PLAYING", name: "Zwift | use !help" }});
   const musich = client.channels.cache.get(chan);
