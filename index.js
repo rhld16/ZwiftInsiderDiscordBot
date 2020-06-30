@@ -9,13 +9,11 @@ n = client.channels.cache.get(chan);
 client.on('voiceStateUpdate', (oldMember, newMember) => {
   let newUserChannel = newMember.voiceChannel
   let oldUserChannel = oldMember.voiceChannel
-  if(oldUserChannel === undefined && newUserChannel !== undefined) {
-	play();
-  } else if(newUserChannel === undefined){
-	if(n.members.size==null){
+  if (oldUserChannel === null) {
+		play();
+	} else if (newUserChannel === null) {
 		n.leave();
 	}
-  }
 });
 async function play() {
   const c = await n.join();
