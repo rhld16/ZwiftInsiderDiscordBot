@@ -9,7 +9,7 @@ function play() {
   var musich = client.channels.cache.get(chan);
   musich.join().then(n => {
     console.log("joined"),
-      n.playOpusStream(ytdl("https://www.youtube.com/watch?v=36YnV9STBqc"), {filter: "audioonly"})
+      n.play(ytdl("https://www.youtube.com/watch?v=36YnV9STBqc"), { type: 'opus' })
         .on("finish", () => {
           leave(), play(), console.log("repeat");
         })
