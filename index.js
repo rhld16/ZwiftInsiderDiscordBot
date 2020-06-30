@@ -29,7 +29,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
   let oldUserChannel = oldMember.channel
   if (oldUserChannel === null) {
 		play();
-	} else if (newUserChannel === null) {
+	} else if (newUserChannel === null && client.channels.cache.get(chan).size < 2) {
 		client.channels.cache.get(chan).leave();
 	}
 });
