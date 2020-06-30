@@ -29,8 +29,6 @@ async function play() {
 }
 client.once("ready", () => {
   client.user.setPresence({ activity: { type: "PLAYING", name: "Zwift | use !help" }});
-  const musich = client.channels.cache.get(chan);
-  play(musich);
   console.log("Ready!")});
 client.on("message", message => { handler(message) });
 client.on("guildMemberRemove", member => { stats.left(member) });
