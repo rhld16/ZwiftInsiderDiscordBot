@@ -13,7 +13,8 @@ client.on("guildMemberRemove", member => updateStats());
 client.on("guildMemberAdd", member => updateStats());
 function updateStats() {
   try {
-    member.guild.channels.cache.get(tab).setName(`📊Total Zwifters: ${member.guild.memberCount}`);
+    const format = num => String(num).replace(/(?<!\..*)(\d)(?=(?:\d{3})+(?:\.|$))/g, '$1,')
+    member.guild.channels.cache.get(tab).setName(`📊Total Zwifters: ${format(member.guild.memberCount)}`);
   } catch (e) {
     console.log(e);
   }
