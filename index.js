@@ -3,17 +3,19 @@ client = new Discord.Client();
 let tab = "650791518147313664";
 client.once("ready", () => {
   client.user.setPresence({ activity: { type: "PLAYING", name: "Zwift" }});
-  console.log("Ready!")
+  console.log("Ready!");
+  let ziguild = client.guilds.cache.get('501890309039325224');
+  updateStats(ziguild);
 });
 client.on("message", message => { 
   if (message.channel.type === 'news') message.crosspost().then(() => console.log('Crossposted message')).catch(console.error);
 });
-client.on("guildMemberRemove", member => updateStats(member));
-client.on("guildMemberAdd", member => updateStats(member));
-function updateStats(member) {
+client.on("guildMemberRemove", member => updateStats(member.guild));
+client.on("guildMemberAdd", member => updateStats(member.guild));
+function updateStats(guild) {
   try {
     const format = num => String(num).replace(/(?<!\..*)(\d)(?=(?:\d{3})+(?:\.|$))/g, '$1,')
-    member.guild.channels.cache.get(tab).setName(`📊Total Zwifters: ${format(member.guild.memberCount)}`);
+    guild.channels.cache.get(tab).setName(`📊Total Zwifters: ${format(guild.memberCount)}`);
   } catch (e) {
     console.log(e);
   }
