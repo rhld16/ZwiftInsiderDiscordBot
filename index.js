@@ -1,11 +1,11 @@
 const Discord = require("discord.js"),
 client = new Discord.Client();
-let tab = "650791518147313664";
+let tab = '650791518147313664';
 client.once("ready", () => {
   client.user.setPresence({ activity: { type: "PLAYING", name: "Zwift" }});
   console.log("Ready!");
   let ziguild = client.guilds.cache.get('501890309039325224');
-  updateStats(ziguild);
+  var interval = setInterval(updateStats(ziguild), 300000);
 });
 client.on("message", message => { 
   if (message.channel.type === 'news') message.crosspost().then(() => console.log('Crossposted message')).catch(console.error);
@@ -21,6 +21,6 @@ function updateStats(guild) {
   }
 }
 const http = require("http"), express = require("express"), app = express();
-app.get("/", (request, response) => {response.sendStatus(200)});
+app.get("/", (req, res) => {res.sendStatus(200)});
 app.listen(process.env.PORT);
 client.login(process.env.TOKEN);
