@@ -5,7 +5,7 @@ client.once("ready", () => {
   client.user.setPresence({ activity: { type: "PLAYING", name: "Zwift" }});
   console.log("Ready!");
   let ziguild = client.guilds.cache.get('501890309039325224');
-  var interval = setInterval(updateStats(ziguild), 300000);
+  var interval = setInterval(() => updateStats(ziguild), 300000);
 });
 client.on("message", message => { 
   if (message.channel.type === 'news') message.crosspost().then(() => console.log('Crossposted message')).catch(console.error);
