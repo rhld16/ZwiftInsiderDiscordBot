@@ -15,7 +15,7 @@ client.on("guildMemberAdd", member => updateStats(member.guild));
 function updateStats(guild) {
   try {
     const format = num => String(num).replace(/(?<!\..*)(\d)(?=(?:\d{3})+(?:\.|$))/g, '$1,')
-    guild.channels.cache.get(tab).setName(`📊Total Zwifters: ${format(guild.memberCount)}`);
+    guild.channels.cache.get(tab).setName(`📊Total Zwifters: ${format(guild.members.size)}`);
   } catch (e) {
     console.log(e);
   }
