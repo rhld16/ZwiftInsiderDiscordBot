@@ -11,7 +11,10 @@ client.on("message", message => {
   if (message.channel.type === 'news') message.crosspost().then(() => console.log('Crossposted message')).catch(console.error);
 });
 client.on("guildMemberRemove", member => updateStats(member.guild));
-client.on("guildMemberAdd", member => updateStats(member.guild));
+client.on("guildMemberAdd", member => {
+  updateStats(member.guild);
+  client.channels.cache.get(`739468064138985562`).send(`Welcome ${member.user}! Please check <#794589468094496798> for important notes.`)
+});
 function updateStats(guild) {
   try {
     const format = num => String(num).replace(/(?<!\..*)(\d)(?=(?:\d{3})+(?:\.|$))/g, '$1,')
