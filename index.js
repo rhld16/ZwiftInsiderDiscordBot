@@ -1,5 +1,5 @@
 const { Client } = require('discord.js');
-const client = new Client({ ws: { intents: ['GUILDS', 'GUILD_MESSAGES'] } });
+const client = new Client({ ws: { intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS'] } });
 let tab = '650791518147313664';
 client.once("ready", () => {
   client.user.setPresence({ activity: { type: "PLAYING", name: "Zwift" }});
