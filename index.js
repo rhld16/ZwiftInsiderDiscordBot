@@ -68,4 +68,4 @@ function sendTag(channel, title, body, img, link) {
 const http = require("http"), express = require("express"), app = express();
 app.get("/", (req, res) => {res.sendStatus(200)});
 app.listen(process.env.PORT);
-client.login("ODAwMTU3NDI4NzM3OTAwNTU0.YAOCrQ.FNMMGQWal6kmARvETKu8wZPF4ms");
+client.login(process.env.TOKEN);
