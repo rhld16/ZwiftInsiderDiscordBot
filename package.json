@@ -9,11 +9,14 @@
     "start": "node index.js"
   },
   "engines": {
-    "node": "^12"
+    "node": "^16"
   },
   "license": "MIT",
   "dependencies": {
-    "discord.js": "^12.5.1",
-    "express": "^4.17.1"
+    "discord-anti-spam": "^2.5.1",
+    "discord.js": "^12.5.3",
+    "express": "^4.17.1",
+    "node": "^16.1.0",
+    "npm": "^7.15.1"
   }
 }

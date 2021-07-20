@@ -1,8 +1,6 @@
 const sendTag = require('../tag.js');
 module.exports = {
 	name: 'discord',
-	description: 'discord!',
-  cooldown: 5,
 	execute(message, args) {
     sendTag(message.channel,
       "Using Discord",
