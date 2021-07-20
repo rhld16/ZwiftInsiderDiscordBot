@@ -1,8 +1,6 @@
 const sendTag = require('../tag.js');
 module.exports = {
 	name: 'zwift',
-	description: 'zwift!',
-  cooldown: 5,
 	execute(message, args) {
     sendTag(message.channel,
       "Zwift",
